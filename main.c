@@ -1,4 +1,4 @@
-/* в демо плате светодиоды висят землей на порту А, поэтому порт сажается на землю
+/* Гў Г¤ГҐГ¬Г® ГЇГ«Г ГІГҐ Г±ГўГҐГІГ®Г¤ГЁГ®Г¤Г» ГўГЁГ±ГїГІ Г§ГҐГ¬Г«ГҐГ© Г­Г  ГЇГ®Г°ГІГі ГЂ, ГЇГ®ГЅГІГ®Г¬Гі ГЇГ®Г°ГІ Г±Г Г¦Г ГҐГІГ±Гї Г­Г  Г§ГҐГ¬Г«Гѕ
  */
 
 #include "D:\ProgramData\CodeBlocks\msc-51\fx2lp\fx2lp_reg.h"
@@ -11,7 +11,7 @@ void tim1 (void) __interrupt (3) __using (1);// interrupt T1 overflow
 void main(void)
 {
     OEA = 0xFD;
-    PA0 = 0;// uart linte tx
+    PA0 = 0;// uart line tx
 
     while(1);
 
