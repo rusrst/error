@@ -1,0 +1,559 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.0.3 #11868 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module main
+                                      6 	.optsdcc -mmcs51 --model-small
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _main
+                                     12 	.globl _TF1
+                                     13 	.globl _TR1
+                                     14 	.globl _TF0
+                                     15 	.globl _TR0
+                                     16 	.globl _IE1
+                                     17 	.globl _IT1
+                                     18 	.globl _IE0
+                                     19 	.globl _IT0
+                                     20 	.globl _EX0
+                                     21 	.globl _ET0
+                                     22 	.globl _EX1
+                                     23 	.globl _ET1
+                                     24 	.globl _ES0
+                                     25 	.globl _ET2
+                                     26 	.globl _ES1
+                                     27 	.globl _EA
+                                     28 	.globl _PA1
+                                     29 	.globl _PA0
+                                     30 	.globl _ACC
+                                     31 	.globl _PSW
+                                     32 	.globl _IE
+                                     33 	.globl _TH1
+                                     34 	.globl _TL1
+                                     35 	.globl _TH0
+                                     36 	.globl _TL0
+                                     37 	.globl _TCON
+                                     38 	.globl _CKCON
+                                     39 	.globl _TMOD
+                                     40 	.globl _IOA
+                                     41 	.globl _OEA
+                                     42 	.globl _MPAGE
+                                     43 	.globl __XPAGE
+                                     44 	.globl _xdata_start
+                                     45 	.globl _CPUCS
+                                     46 	.globl _int0
+                                     47 	.globl _tim0
+                                     48 	.globl _int1
+                                     49 	.globl _tim1
+                                     50 	.globl _usart0
+                                     51 	.globl _tim2
+                                     52 	.globl _res
+                                     53 	.globl _usart1
+                                     54 	.globl _usb
+                                     55 	.globl _i2c
+                                     56 	.globl _int4
+                                     57 	.globl _int5
+                                     58 	.globl _int6
+                                     59 ;--------------------------------------------------------
+                                     60 ; special function registers
+                                     61 ;--------------------------------------------------------
+                                     62 	.area RSEG    (ABS,DATA)
+      000000                         63 	.org 0x0000
+                           000092    64 G$_XPAGE$0_0$0 == 0x0092
+                           000092    65 __XPAGE	=	0x0092
+                           000092    66 G$MPAGE$0_0$0 == 0x0092
+                           000092    67 _MPAGE	=	0x0092
+                           0000B2    68 G$OEA$0_0$0 == 0x00b2
+                           0000B2    69 _OEA	=	0x00b2
+                           000080    70 G$IOA$0_0$0 == 0x0080
+                           000080    71 _IOA	=	0x0080
+                           000089    72 G$TMOD$0_0$0 == 0x0089
+                           000089    73 _TMOD	=	0x0089
+                           00008E    74 G$CKCON$0_0$0 == 0x008e
+                           00008E    75 _CKCON	=	0x008e
+                           000088    76 G$TCON$0_0$0 == 0x0088
+                           000088    77 _TCON	=	0x0088
+                           00008A    78 G$TL0$0_0$0 == 0x008a
+                           00008A    79 _TL0	=	0x008a
+                           00008C    80 G$TH0$0_0$0 == 0x008c
+                           00008C    81 _TH0	=	0x008c
+                           00008B    82 G$TL1$0_0$0 == 0x008b
+                           00008B    83 _TL1	=	0x008b
+                           00008D    84 G$TH1$0_0$0 == 0x008d
+                           00008D    85 _TH1	=	0x008d
+                           0000A8    86 G$IE$0_0$0 == 0x00a8
+                           0000A8    87 _IE	=	0x00a8
+                           0000D0    88 G$PSW$0_0$0 == 0x00d0
+                           0000D0    89 _PSW	=	0x00d0
+                           0000E0    90 G$ACC$0_0$0 == 0x00e0
+                           0000E0    91 _ACC	=	0x00e0
+                                     92 ;--------------------------------------------------------
+                                     93 ; special function bits
+                                     94 ;--------------------------------------------------------
+                                     95 	.area RSEG    (ABS,DATA)
+      000000                         96 	.org 0x0000
+                           000080    97 G$PA0$0_0$0 == 0x0080
+                           000080    98 _PA0	=	0x0080
+                           000081    99 G$PA1$0_0$0 == 0x0081
+                           000081   100 _PA1	=	0x0081
+                           0000AF   101 G$EA$0_0$0 == 0x00af
+                           0000AF   102 _EA	=	0x00af
+                           0000AE   103 G$ES1$0_0$0 == 0x00ae
+                           0000AE   104 _ES1	=	0x00ae
+                           0000AD   105 G$ET2$0_0$0 == 0x00ad
+                           0000AD   106 _ET2	=	0x00ad
+                           0000AC   107 G$ES0$0_0$0 == 0x00ac
+                           0000AC   108 _ES0	=	0x00ac
+                           0000AB   109 G$ET1$0_0$0 == 0x00ab
+                           0000AB   110 _ET1	=	0x00ab
+                           0000AA   111 G$EX1$0_0$0 == 0x00aa
+                           0000AA   112 _EX1	=	0x00aa
+                           0000A9   113 G$ET0$0_0$0 == 0x00a9
+                           0000A9   114 _ET0	=	0x00a9
+                           0000A8   115 G$EX0$0_0$0 == 0x00a8
+                           0000A8   116 _EX0	=	0x00a8
+                           000088   117 G$IT0$0_0$0 == 0x0088
+                           000088   118 _IT0	=	0x0088
+                           000089   119 G$IE0$0_0$0 == 0x0089
+                           000089   120 _IE0	=	0x0089
+                           00008A   121 G$IT1$0_0$0 == 0x008a
+                           00008A   122 _IT1	=	0x008a
+                           00008B   123 G$IE1$0_0$0 == 0x008b
+                           00008B   124 _IE1	=	0x008b
+                           00008C   125 G$TR0$0_0$0 == 0x008c
+                           00008C   126 _TR0	=	0x008c
+                           00008D   127 G$TF0$0_0$0 == 0x008d
+                           00008D   128 _TF0	=	0x008d
+                           00008E   129 G$TR1$0_0$0 == 0x008e
+                           00008E   130 _TR1	=	0x008e
+                           00008F   131 G$TF1$0_0$0 == 0x008f
+                           00008F   132 _TF1	=	0x008f
+                                    133 ;--------------------------------------------------------
+                                    134 ; overlayable register banks
+                                    135 ;--------------------------------------------------------
+                                    136 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        137 	.ds 8
+                                    138 ;--------------------------------------------------------
+                                    139 ; internal ram data
+                                    140 ;--------------------------------------------------------
+                                    141 	.area DSEG    (DATA)
+                                    142 ;--------------------------------------------------------
+                                    143 ; overlayable items in internal ram 
+                                    144 ;--------------------------------------------------------
+                                    145 ;--------------------------------------------------------
+                                    146 ; Stack segment in internal ram 
+                                    147 ;--------------------------------------------------------
+                                    148 	.area	SSEG
+      000008                        149 __start__stack:
+      000008                        150 	.ds	1
+                                    151 
+                                    152 ;--------------------------------------------------------
+                                    153 ; indirectly addressable internal ram data
+                                    154 ;--------------------------------------------------------
+                                    155 	.area ISEG    (DATA)
+                                    156 ;--------------------------------------------------------
+                                    157 ; absolute internal ram data
+                                    158 ;--------------------------------------------------------
+                                    159 	.area IABS    (ABS,DATA)
+                                    160 	.area IABS    (ABS,DATA)
+                                    161 ;--------------------------------------------------------
+                                    162 ; bit data
+                                    163 ;--------------------------------------------------------
+                                    164 	.area BSEG    (BIT)
+                                    165 ;--------------------------------------------------------
+                                    166 ; paged external ram data
+                                    167 ;--------------------------------------------------------
+                                    168 	.area PSEG    (PAG,XDATA)
+                                    169 ;--------------------------------------------------------
+                                    170 ; external ram data
+                                    171 ;--------------------------------------------------------
+                                    172 	.area XSEG    (XDATA)
+                           00E600   173 G$CPUCS$0_0$0 == 0xe600
+                           00E600   174 _CPUCS	=	0xe600
+                           00E000   175 G$xdata_start$0_0$0 == 0xe000
+                           00E000   176 _xdata_start	=	0xe000
+                                    177 ;--------------------------------------------------------
+                                    178 ; absolute external ram data
+                                    179 ;--------------------------------------------------------
+                                    180 	.area XABS    (ABS,XDATA)
+                                    181 ;--------------------------------------------------------
+                                    182 ; external initialized ram data
+                                    183 ;--------------------------------------------------------
+                                    184 	.area XISEG   (XDATA)
+                                    185 	.area HOME    (CODE)
+                                    186 	.area GSINIT0 (CODE)
+                                    187 	.area GSINIT1 (CODE)
+                                    188 	.area GSINIT2 (CODE)
+                                    189 	.area GSINIT3 (CODE)
+                                    190 	.area GSINIT4 (CODE)
+                                    191 	.area GSINIT5 (CODE)
+                                    192 	.area GSINIT  (CODE)
+                                    193 	.area GSFINAL (CODE)
+                                    194 	.area CSEG    (CODE)
+                                    195 ;--------------------------------------------------------
+                                    196 ; interrupt vector 
+                                    197 ;--------------------------------------------------------
+                                    198 	.area HOME    (CODE)
+      000000                        199 __interrupt_vect:
+      000000 02 00 69         [24]  200 	ljmp	__sdcc_gsinit_startup
+      000003 02 00 D3         [24]  201 	ljmp	_int0
+      000006                        202 	.ds	5
+      00000B 02 00 D8         [24]  203 	ljmp	_tim0
+      00000E                        204 	.ds	5
+      000013 02 00 D9         [24]  205 	ljmp	_int1
+      000016                        206 	.ds	5
+      00001B 02 00 DA         [24]  207 	ljmp	_tim1
+      00001E                        208 	.ds	5
+      000023 02 00 DB         [24]  209 	ljmp	_usart0
+      000026                        210 	.ds	5
+      00002B 02 00 DC         [24]  211 	ljmp	_tim2
+      00002E                        212 	.ds	5
+      000033 02 00 DD         [24]  213 	ljmp	_res
+      000036                        214 	.ds	5
+      00003B 02 00 DE         [24]  215 	ljmp	_usart1
+      00003E                        216 	.ds	5
+      000043 02 00 DF         [24]  217 	ljmp	_usb
+      000046                        218 	.ds	5
+      00004B 02 00 E0         [24]  219 	ljmp	_i2c
+      00004E                        220 	.ds	5
+      000053 02 00 E1         [24]  221 	ljmp	_int4
+      000056                        222 	.ds	5
+      00005B 02 00 E2         [24]  223 	ljmp	_int5
+      00005E                        224 	.ds	5
+      000063 02 00 E3         [24]  225 	ljmp	_int6
+                                    226 ;--------------------------------------------------------
+                                    227 ; global & static initialisations
+                                    228 ;--------------------------------------------------------
+                                    229 	.area HOME    (CODE)
+                                    230 	.area GSINIT  (CODE)
+                                    231 	.area GSFINAL (CODE)
+                                    232 	.area GSINIT  (CODE)
+                                    233 	.globl __sdcc_gsinit_startup
+                                    234 	.globl __sdcc_program_startup
+                                    235 	.globl __start__stack
+                                    236 	.globl __mcs51_genXINIT
+                                    237 	.globl __mcs51_genXRAMCLEAR
+                                    238 	.globl __mcs51_genRAMCLEAR
+                                    239 	.area GSFINAL (CODE)
+      0000C2 02 00 66         [24]  240 	ljmp	__sdcc_program_startup
+                                    241 ;--------------------------------------------------------
+                                    242 ; Home
+                                    243 ;--------------------------------------------------------
+                                    244 	.area HOME    (CODE)
+                                    245 	.area HOME    (CODE)
+      000066                        246 __sdcc_program_startup:
+      000066 02 00 C5         [24]  247 	ljmp	_main
+                                    248 ;	return from main will return to caller
+                                    249 ;--------------------------------------------------------
+                                    250 ; code
+                                    251 ;--------------------------------------------------------
+                                    252 	.area CSEG    (CODE)
+                                    253 ;------------------------------------------------------------
+                                    254 ;Allocation info for local variables in function 'main'
+                                    255 ;------------------------------------------------------------
+                           000000   256 	G$main$0$0 ==.
+                           000000   257 	C$main.c$22$0_0$15 ==.
+                                    258 ;	main.c:22: void main(void)
+                                    259 ;	-----------------------------------------
+                                    260 ;	 function main
+                                    261 ;	-----------------------------------------
+      0000C5                        262 _main:
+                           000007   263 	ar7 = 0x07
+                           000006   264 	ar6 = 0x06
+                           000005   265 	ar5 = 0x05
+                           000004   266 	ar4 = 0x04
+                           000003   267 	ar3 = 0x03
+                           000002   268 	ar2 = 0x02
+                           000001   269 	ar1 = 0x01
+                           000000   270 	ar0 = 0x00
+                           000000   271 	C$main.c$24$1_0$15 ==.
+                                    272 ;	main.c:24: OEA = 0xFE;
+      0000C5 75 B2 FE         [24]  273 	mov	_OEA,#0xfe
+                           000003   274 	C$main.c$25$1_0$15 ==.
+                                    275 ;	main.c:25: PA1 = 0;// uart linte tx
+                                    276 ;	assignBit
+      0000C8 C2 81            [12]  277 	clr	_PA1
+                           000005   278 	C$main.c$27$1_0$15 ==.
+                                    279 ;	main.c:27: EX0 = 1;
+                                    280 ;	assignBit
+      0000CA D2 A8            [12]  281 	setb	_EX0
+                           000007   282 	C$main.c$28$1_0$15 ==.
+                                    283 ;	main.c:28: IT0 = 1; // edge, see 195 str
+                                    284 ;	assignBit
+      0000CC D2 88            [12]  285 	setb	_IT0
+                           000009   286 	C$main.c$32$1_0$15 ==.
+                                    287 ;	main.c:32: EA = 1;
+                                    288 ;	assignBit
+      0000CE D2 AF            [12]  289 	setb	_EA
+                           00000B   290 	C$main.c$34$1_0$15 ==.
+                                    291 ;	main.c:34: while(1);
+      0000D0                        292 00102$:
+      0000D0 80 FE            [24]  293 	sjmp	00102$
+                           00000D   294 	C$main.c$37$1_0$15 ==.
+                                    295 ;	main.c:37: }
+                           00000D   296 	C$main.c$37$1_0$15 ==.
+                           00000D   297 	XG$main$0$0 ==.
+      0000D2 22               [24]  298 	ret
+                                    299 ;------------------------------------------------------------
+                                    300 ;Allocation info for local variables in function 'int0'
+                                    301 ;------------------------------------------------------------
+                           00000E   302 	G$int0$0$0 ==.
+                           00000E   303 	C$main.c$40$1_0$17 ==.
+                                    304 ;	main.c:40: void int0 (void) __interrupt (0) {
+                                    305 ;	-----------------------------------------
+                                    306 ;	 function int0
+                                    307 ;	-----------------------------------------
+      0000D3                        308 _int0:
+                           00000E   309 	C$main.c$41$1_0$17 ==.
+                                    310 ;	main.c:41: EA = 0;
+                                    311 ;	assignBit
+      0000D3 C2 AF            [12]  312 	clr	_EA
+                           000010   313 	C$main.c$42$1_0$17 ==.
+                                    314 ;	main.c:42: PA1 = 1;
+                                    315 ;	assignBit
+      0000D5 D2 81            [12]  316 	setb	_PA1
+                           000012   317 	C$main.c$43$1_0$17 ==.
+                                    318 ;	main.c:43: }
+                           000012   319 	C$main.c$43$1_0$17 ==.
+                           000012   320 	XG$int0$0$0 ==.
+      0000D7 32               [24]  321 	reti
+                                    322 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    323 ;	eliminated unneeded push/pop not_psw
+                                    324 ;	eliminated unneeded push/pop dpl
+                                    325 ;	eliminated unneeded push/pop dph
+                                    326 ;	eliminated unneeded push/pop b
+                                    327 ;	eliminated unneeded push/pop acc
+                                    328 ;------------------------------------------------------------
+                                    329 ;Allocation info for local variables in function 'tim0'
+                                    330 ;------------------------------------------------------------
+                           000013   331 	G$tim0$0$0 ==.
+                           000013   332 	C$main.c$44$1_0$20 ==.
+                                    333 ;	main.c:44: void tim0 (void) __interrupt (1) {}
+                                    334 ;	-----------------------------------------
+                                    335 ;	 function tim0
+                                    336 ;	-----------------------------------------
+      0000D8                        337 _tim0:
+                           000013   338 	C$main.c$44$1_0$20 ==.
+                           000013   339 	XG$tim0$0$0 ==.
+      0000D8 32               [24]  340 	reti
+                                    341 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    342 ;	eliminated unneeded push/pop not_psw
+                                    343 ;	eliminated unneeded push/pop dpl
+                                    344 ;	eliminated unneeded push/pop dph
+                                    345 ;	eliminated unneeded push/pop b
+                                    346 ;	eliminated unneeded push/pop acc
+                                    347 ;------------------------------------------------------------
+                                    348 ;Allocation info for local variables in function 'int1'
+                                    349 ;------------------------------------------------------------
+                           000014   350 	G$int1$0$0 ==.
+                           000014   351 	C$main.c$45$1_0$23 ==.
+                                    352 ;	main.c:45: void int1 (void) __interrupt (2) {}
+                                    353 ;	-----------------------------------------
+                                    354 ;	 function int1
+                                    355 ;	-----------------------------------------
+      0000D9                        356 _int1:
+                           000014   357 	C$main.c$45$1_0$23 ==.
+                           000014   358 	XG$int1$0$0 ==.
+      0000D9 32               [24]  359 	reti
+                                    360 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    361 ;	eliminated unneeded push/pop not_psw
+                                    362 ;	eliminated unneeded push/pop dpl
+                                    363 ;	eliminated unneeded push/pop dph
+                                    364 ;	eliminated unneeded push/pop b
+                                    365 ;	eliminated unneeded push/pop acc
+                                    366 ;------------------------------------------------------------
+                                    367 ;Allocation info for local variables in function 'tim1'
+                                    368 ;------------------------------------------------------------
+                           000015   369 	G$tim1$0$0 ==.
+                           000015   370 	C$main.c$46$1_0$26 ==.
+                                    371 ;	main.c:46: void tim1 (void) __interrupt (3) {}
+                                    372 ;	-----------------------------------------
+                                    373 ;	 function tim1
+                                    374 ;	-----------------------------------------
+      0000DA                        375 _tim1:
+                           000015   376 	C$main.c$46$1_0$26 ==.
+                           000015   377 	XG$tim1$0$0 ==.
+      0000DA 32               [24]  378 	reti
+                                    379 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    380 ;	eliminated unneeded push/pop not_psw
+                                    381 ;	eliminated unneeded push/pop dpl
+                                    382 ;	eliminated unneeded push/pop dph
+                                    383 ;	eliminated unneeded push/pop b
+                                    384 ;	eliminated unneeded push/pop acc
+                                    385 ;------------------------------------------------------------
+                                    386 ;Allocation info for local variables in function 'usart0'
+                                    387 ;------------------------------------------------------------
+                           000016   388 	G$usart0$0$0 ==.
+                           000016   389 	C$main.c$47$1_0$29 ==.
+                                    390 ;	main.c:47: void usart0 (void) __interrupt (4) {}
+                                    391 ;	-----------------------------------------
+                                    392 ;	 function usart0
+                                    393 ;	-----------------------------------------
+      0000DB                        394 _usart0:
+                           000016   395 	C$main.c$47$1_0$29 ==.
+                           000016   396 	XG$usart0$0$0 ==.
+      0000DB 32               [24]  397 	reti
+                                    398 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    399 ;	eliminated unneeded push/pop not_psw
+                                    400 ;	eliminated unneeded push/pop dpl
+                                    401 ;	eliminated unneeded push/pop dph
+                                    402 ;	eliminated unneeded push/pop b
+                                    403 ;	eliminated unneeded push/pop acc
+                                    404 ;------------------------------------------------------------
+                                    405 ;Allocation info for local variables in function 'tim2'
+                                    406 ;------------------------------------------------------------
+                           000017   407 	G$tim2$0$0 ==.
+                           000017   408 	C$main.c$48$1_0$32 ==.
+                                    409 ;	main.c:48: void tim2 (void) __interrupt (5) {}
+                                    410 ;	-----------------------------------------
+                                    411 ;	 function tim2
+                                    412 ;	-----------------------------------------
+      0000DC                        413 _tim2:
+                           000017   414 	C$main.c$48$1_0$32 ==.
+                           000017   415 	XG$tim2$0$0 ==.
+      0000DC 32               [24]  416 	reti
+                                    417 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    418 ;	eliminated unneeded push/pop not_psw
+                                    419 ;	eliminated unneeded push/pop dpl
+                                    420 ;	eliminated unneeded push/pop dph
+                                    421 ;	eliminated unneeded push/pop b
+                                    422 ;	eliminated unneeded push/pop acc
+                                    423 ;------------------------------------------------------------
+                                    424 ;Allocation info for local variables in function 'res'
+                                    425 ;------------------------------------------------------------
+                           000018   426 	G$res$0$0 ==.
+                           000018   427 	C$main.c$49$1_0$35 ==.
+                                    428 ;	main.c:49: void res (void) __interrupt (6) {}
+                                    429 ;	-----------------------------------------
+                                    430 ;	 function res
+                                    431 ;	-----------------------------------------
+      0000DD                        432 _res:
+                           000018   433 	C$main.c$49$1_0$35 ==.
+                           000018   434 	XG$res$0$0 ==.
+      0000DD 32               [24]  435 	reti
+                                    436 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    437 ;	eliminated unneeded push/pop not_psw
+                                    438 ;	eliminated unneeded push/pop dpl
+                                    439 ;	eliminated unneeded push/pop dph
+                                    440 ;	eliminated unneeded push/pop b
+                                    441 ;	eliminated unneeded push/pop acc
+                                    442 ;------------------------------------------------------------
+                                    443 ;Allocation info for local variables in function 'usart1'
+                                    444 ;------------------------------------------------------------
+                           000019   445 	G$usart1$0$0 ==.
+                           000019   446 	C$main.c$50$1_0$38 ==.
+                                    447 ;	main.c:50: void usart1 (void) __interrupt (7) {}
+                                    448 ;	-----------------------------------------
+                                    449 ;	 function usart1
+                                    450 ;	-----------------------------------------
+      0000DE                        451 _usart1:
+                           000019   452 	C$main.c$50$1_0$38 ==.
+                           000019   453 	XG$usart1$0$0 ==.
+      0000DE 32               [24]  454 	reti
+                                    455 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    456 ;	eliminated unneeded push/pop not_psw
+                                    457 ;	eliminated unneeded push/pop dpl
+                                    458 ;	eliminated unneeded push/pop dph
+                                    459 ;	eliminated unneeded push/pop b
+                                    460 ;	eliminated unneeded push/pop acc
+                                    461 ;------------------------------------------------------------
+                                    462 ;Allocation info for local variables in function 'usb'
+                                    463 ;------------------------------------------------------------
+                           00001A   464 	G$usb$0$0 ==.
+                           00001A   465 	C$main.c$51$1_0$41 ==.
+                                    466 ;	main.c:51: void usb (void) __interrupt (8) {}
+                                    467 ;	-----------------------------------------
+                                    468 ;	 function usb
+                                    469 ;	-----------------------------------------
+      0000DF                        470 _usb:
+                           00001A   471 	C$main.c$51$1_0$41 ==.
+                           00001A   472 	XG$usb$0$0 ==.
+      0000DF 32               [24]  473 	reti
+                                    474 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    475 ;	eliminated unneeded push/pop not_psw
+                                    476 ;	eliminated unneeded push/pop dpl
+                                    477 ;	eliminated unneeded push/pop dph
+                                    478 ;	eliminated unneeded push/pop b
+                                    479 ;	eliminated unneeded push/pop acc
+                                    480 ;------------------------------------------------------------
+                                    481 ;Allocation info for local variables in function 'i2c'
+                                    482 ;------------------------------------------------------------
+                           00001B   483 	G$i2c$0$0 ==.
+                           00001B   484 	C$main.c$52$1_0$44 ==.
+                                    485 ;	main.c:52: void i2c (void) __interrupt (9) {}
+                                    486 ;	-----------------------------------------
+                                    487 ;	 function i2c
+                                    488 ;	-----------------------------------------
+      0000E0                        489 _i2c:
+                           00001B   490 	C$main.c$52$1_0$44 ==.
+                           00001B   491 	XG$i2c$0$0 ==.
+      0000E0 32               [24]  492 	reti
+                                    493 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    494 ;	eliminated unneeded push/pop not_psw
+                                    495 ;	eliminated unneeded push/pop dpl
+                                    496 ;	eliminated unneeded push/pop dph
+                                    497 ;	eliminated unneeded push/pop b
+                                    498 ;	eliminated unneeded push/pop acc
+                                    499 ;------------------------------------------------------------
+                                    500 ;Allocation info for local variables in function 'int4'
+                                    501 ;------------------------------------------------------------
+                           00001C   502 	G$int4$0$0 ==.
+                           00001C   503 	C$main.c$53$1_0$47 ==.
+                                    504 ;	main.c:53: void int4 (void) __interrupt (10) {}
+                                    505 ;	-----------------------------------------
+                                    506 ;	 function int4
+                                    507 ;	-----------------------------------------
+      0000E1                        508 _int4:
+                           00001C   509 	C$main.c$53$1_0$47 ==.
+                           00001C   510 	XG$int4$0$0 ==.
+      0000E1 32               [24]  511 	reti
+                                    512 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    513 ;	eliminated unneeded push/pop not_psw
+                                    514 ;	eliminated unneeded push/pop dpl
+                                    515 ;	eliminated unneeded push/pop dph
+                                    516 ;	eliminated unneeded push/pop b
+                                    517 ;	eliminated unneeded push/pop acc
+                                    518 ;------------------------------------------------------------
+                                    519 ;Allocation info for local variables in function 'int5'
+                                    520 ;------------------------------------------------------------
+                           00001D   521 	G$int5$0$0 ==.
+                           00001D   522 	C$main.c$54$1_0$50 ==.
+                                    523 ;	main.c:54: void int5 (void) __interrupt (11) {}
+                                    524 ;	-----------------------------------------
+                                    525 ;	 function int5
+                                    526 ;	-----------------------------------------
+      0000E2                        527 _int5:
+                           00001D   528 	C$main.c$54$1_0$50 ==.
+                           00001D   529 	XG$int5$0$0 ==.
+      0000E2 32               [24]  530 	reti
+                                    531 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    532 ;	eliminated unneeded push/pop not_psw
+                                    533 ;	eliminated unneeded push/pop dpl
+                                    534 ;	eliminated unneeded push/pop dph
+                                    535 ;	eliminated unneeded push/pop b
+                                    536 ;	eliminated unneeded push/pop acc
+                                    537 ;------------------------------------------------------------
+                                    538 ;Allocation info for local variables in function 'int6'
+                                    539 ;------------------------------------------------------------
+                           00001E   540 	G$int6$0$0 ==.
+                           00001E   541 	C$main.c$55$1_0$53 ==.
+                                    542 ;	main.c:55: void int6 (void) __interrupt (12) {}
+                                    543 ;	-----------------------------------------
+                                    544 ;	 function int6
+                                    545 ;	-----------------------------------------
+      0000E3                        546 _int6:
+                           00001E   547 	C$main.c$55$1_0$53 ==.
+                           00001E   548 	XG$int6$0$0 ==.
+      0000E3 32               [24]  549 	reti
+                                    550 ;	eliminated unneeded mov psw,# (no regs used in bank)
+                                    551 ;	eliminated unneeded push/pop not_psw
+                                    552 ;	eliminated unneeded push/pop dpl
+                                    553 ;	eliminated unneeded push/pop dph
+                                    554 ;	eliminated unneeded push/pop b
+                                    555 ;	eliminated unneeded push/pop acc
+                                    556 	.area CSEG    (CODE)
+                                    557 	.area CONST   (CODE)
+                                    558 	.area XINIT   (CODE)
+                                    559 	.area CABS    (ABS,CODE)
