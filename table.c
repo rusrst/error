@@ -17,7 +17,7 @@ __code unsigned char *pPtr = descr;
 
 __xdata unsigned char *pTemp;
 unsigned char temp2 = (unsigned char) pTemp & 0xff;
-//temp = (unsigned long) pPtr & 0xff; ���� ������� ������ ������
-//
+//temp = (unsigned long) pPtr & 0xff; этот участок выдает ошибку
+//pPtr++; этот участок кода выдает ошибку
 
 
